@@ -16,12 +16,17 @@ int main(){
   return 0;
 }
 
-void dir_info(DIR * dir_path){
+void dir_info(DIR *dir_path){
   struct dirent *stuff;
+  struct stat *info;
+  int size = 0;
   stuff = readdir(dir_path);
   while(stuff){
     printf("Name of file: %s\n",stuff->d_name);
+    size += stuff->d_size;
+    stuff = readdir(dir_path);
   }
+  printf("Size of directory: %d",size);
   closedir(dir_path);
   //char *name = stuff->d_name;
   //printf("Name of file: %s\n",name);
