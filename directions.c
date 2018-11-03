@@ -23,9 +23,13 @@ void dir_info(DIR *dir_path, char *c){
   stuff = readdir(dir_path);
   while(stuff){
     stat(stuff->d_name,info);
-    printf("Name of file: %s\n",stuff->d_name);
+    if(stuff->d_type != DT_DIR){
+      printf("Name of file: %s\n",stuff->d_name);
+    }else{
+      printf("Name of Directory: %s\n",stuff->d_name);
+    }
     size += info->st_size;
-    printf("File size: %ld\n",info->st_size);
+    printf("File size: %d\n",info->st_size);
     stuff = readdir(dir_path);
   }
   printf("Size of directory: %d\n",size);
