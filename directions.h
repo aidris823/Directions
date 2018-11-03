@@ -1,1 +1,1 @@
-void dir_info(DIR * dir_path);
+void dir_info(DIR * dir_path,char *c);
